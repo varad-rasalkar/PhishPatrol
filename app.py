@@ -1,6 +1,7 @@
 import re
 import string
 import numpy as np
+import os
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
@@ -24,12 +25,13 @@ def preprocess_email(email_text):
 class PhishingDetector:
     def __init__(self):
         self.vectorizer = TfidfVectorizer(max_features=5000)
-        self.model = RandomForestClassifier()
+        self.model = RandomForestClassifier(n_estimators=100)  # Reduced for faster training
 
     def train(self, emails, labels):
         emails = [preprocess_email(email) for email in emails]
         X = self.vectorizer.fit_transform(emails)
         self.model.fit(X, labels)
+        print("Model training completed.")
 
     def predict(self, email):
         email = preprocess_email(email)
@@ -48,8 +50,12 @@ def load_dataset(file_path):
 app = Flask(__name__)
 detector = PhishingDetector()
 
-# Train the model with the dataset (Adjust the file path as needed)
-data_file = 'emails_dataset.csv'  # Replace with the actual dataset file path
+# Train the model with the dataset
+data_file = 'emails_dataset.csv'  # Ensure this file exists in the project directory
+if not os.path.exists(data_file):
+    print(f"Error: The dataset file '{data_file}' does not exist.")
+    exit(1)
+
 emails, labels = load_dataset(data_file)
 detector.train(emails, labels)
 
