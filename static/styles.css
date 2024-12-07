@@ -1,0 +1,57 @@
+/* static/styles.css */
+
+/* Body Styling */
+body {
+    background-color: #e9ecef; /* Light gray background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar Styling */
+.navbar-brand img {
+    margin-right: 10px;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 15px;
+}
+
+/* Button Hover Effect */
+#submitBtn:hover {
+    background-color: #FFC107; /* Slightly darker orange */
+    color: #fff;
+}
+
+/* Result Div Styling */
+#result.phishing {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24; /* Dark red */
+    border: 1px solid #f5c6cb;
+}
+
+#result.legitimate {
+    background-color: #d4edda; /* Light green */
+    color: #155724; /* Dark green */
+    border: 1px solid #c3e6cb;
+}
+
+#result.error {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24; /* Dark red */
+    border: 1px solid #f5c6cb;
+}
+
+/* Footer Styling */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #submitBtn {
+        font-size: 1rem;
+    }
+}
